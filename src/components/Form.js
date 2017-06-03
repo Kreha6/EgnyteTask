@@ -8,6 +8,7 @@ export class Form extends Component {
     }
   }
 
+
   render() {
     let create = this.props.folderForm;
     let folderForm = null;
@@ -30,12 +31,12 @@ export class Form extends Component {
               </button>
             </div>
             <div className="col-xs-2">
-              <button onClick={this.props.delete} disabled={this.props.disableDelete}>
+              <button onClick={this.props.openModal} disabled={this.props.disableDelete}>
                 Delete
               </button>
             </div>
             <div className="col-xs-7">
-              <button onClick={this.props.toggleFolderForm}>
+              <button disabled = {!this.props.folderButton} onClick={this.props.toggleFolderForm}>
                 New Folder
               </button>
             </div>

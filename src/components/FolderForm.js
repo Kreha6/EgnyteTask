@@ -17,7 +17,7 @@ export class FolderForm extends Component {
       <li className="list-group-item">
         <div className = "row">
           <div className = "col-xs-4">
-            <input type="text" value={this.state.name} onChange={this.handleChange} />
+            <input ref={input => input && input.focus()} type="text" value={this.state.name} onChange={this.handleChange} />
           </div>
           <div className="col-xs-4">
             <button onClick={()=>this.props.createFolder(this.state.name)} disabled={this.state.disabled} >

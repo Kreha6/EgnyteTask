@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Form, FolderList, FileList} from './';
+import {Form, FolderList, FileList,Modal} from './';
 import {findById,toggleFile,updateFile,removeFile} from '../lib/helpers'
 
 class App extends Component {
@@ -15,7 +15,9 @@ class App extends Component {
       checked: false,
       disableRename: true,
       disableDelete: true,
-      createFolder: false
+      createFolder: false,
+      openModal: false,
+      folderButtonActive:true
     }
   }
   activateRename = () => {
@@ -36,6 +38,10 @@ class App extends Component {
     this.setState({files:updatedFiles})
   }
 
+  toggleModal = () => {
+    this.setState({ openModal: !this.state.openModal })
+  }
+
   abortRename = (id) =>{
     let file = findById(id,this.state.files)
     file.rename = false;
@@ -44,8 +50,9 @@ class App extends Component {
   }
 
   toggleFolderForm = () =>{
-    this.setState({createFolder: !this.state.createFolder})
+    this.setState({createFolder: !this.state.createFolder,folderButtonActive:!this.state.folderButtonActive})
   }
+
   handleCheck = () =>{
     let files = this.state.files;
     for (let i in files) {
@@ -53,12 +60,32 @@ class App extends Component {
     }
     this.setState({checked:!this.state.checked,files})
   }
+
   createFolder=(name)=>{
     let folders = this.state.folders;
     let id = folders.length;
     let newFolder = {id:id, name:name}
     this.setState({folders:[newFolder,...folders],createFolder:false})
   }
+
+  handleDelete = (id) =>{
+    let files = this.state.files;
+    let index = files.map((file) => file.id).indexOf(id);
+    let updatedFiles = [...files.slice(0,index),...files.slice(index+1)]
+    this.setState({files:updatedFiles})
+  }
+  deleteFiles = () =>{
+    let files = this.state.files;
+    let index;
+    files.forEach((file) => {
+      if(file.checked){
+        index = files.map((file) => file.id).indexOf(file.id);
+        files = [...files.slice(0,index),...files.slice(index+1)]
+      }
+    })
+    this.setState({files,openModal: !this.state.openModal})
+  }
+
   handleToggle=(id)=>{
     let file = findById(id,this.state.files)
     let toggled = toggleFile(file)
@@ -79,20 +106,37 @@ class App extends Component {
     let disableDelete = checkedFiles > 0 ? false:true;
     this.setState({checked,disableDelete,disableRename})
   }
-  //usuwanie indexu [...list.slice(0,index),...(list.slice(index+1))
+
   render() {
     return (
-      <div className="container">
+      <div className="container app">
+        <Modal isOpen={this.state.openModal} openModal = {this.toggleModal} >
+            <h1>Are you sure you want to delete selected files?</h1>
+            <div className = "row">
+              <div className="col-xs-6">
+                <button onClick={() => this.deleteFiles()}>
+                  Yes
+                </button>
+              </div>
+              <div className="col-xs-6">
+                <button onClick={() => this.toggleModal()} >
+                  No
+                </button>
+              </div>
+            </div>
+        </Modal>
         <Form
           checked = {this.state.checked}
           check = {this.handleCheck}
           delete = {this.handleDelete}
           toggleFolderForm = {this.toggleFolderForm}
           folderForm = {this.state.createFolder}
+          folderButton = {this.state.folderButtonActive}
           createFolder = {this.createFolder}
           disableRename = {this.state.disableRename}
           disableDelete = {this.state.disableDelete}
           activateRename = {this.activateRename}
+          openModal = {this.toggleModal}
           />
         <FolderList folders={this.state.folders} />
         <FileList files={this.state.files} handleToggle ={this.handleToggle} abortRename={this.abortRename} renameFile = {this.renameFile} />
