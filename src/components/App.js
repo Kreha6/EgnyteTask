@@ -13,13 +13,14 @@ class App extends Component {
         {id:3, name:"Fouth.js",checked:false,rename:false}],
       folders:[],
       checked: false,
-      disableRename: true,
-      disableDelete: true,
+      disableRenameButton: true,
+      disableDeleteButton: true,
       createFolder: false,
       openModal: false,
       folderButtonActive:true
     }
   }
+  
   activateRename = () => {
     let files = this.state.files;
     files.forEach((file) => {
@@ -57,8 +58,14 @@ class App extends Component {
     let files = this.state.files;
     for (let i in files) {
      files[i].checked = !this.state.checked
-    }
-    this.setState({checked:!this.state.checked,files})
+   }
+   let disableRenameButton = true;
+   let disableDeleteButton = true;
+   if((files.length>0) && !this.state.checked){
+     disableRenameButton = false;
+     disableDeleteButton = false;
+   }
+    this.setState({checked:!this.state.checked,files,disableDeleteButton,disableRenameButton})
   }
 
   createFolder=(name)=>{
@@ -76,7 +83,7 @@ class App extends Component {
         files = [...files.slice(0,index),...files.slice(index+1)]
       }
     })
-    this.setState({files,openModal: !this.state.openModal,disableDelete:true,disableRename:true})
+    this.setState({files,openModal: !this.state.openModal,disableDeleteButton:true,disableRenameButton:true})
     if(files.length == 0){
       this.setState({checked:false})
     }
@@ -98,9 +105,9 @@ class App extends Component {
         checkedFiles++;
       }
     })
-    let disableRename = checkedFiles > 0 ? false:true;
-    let disableDelete = checkedFiles > 0 ? false:true;
-    this.setState({checked,disableDelete,disableRename})
+    let disableRenameButton = checkedFiles > 0 ? false:true;
+    let disableDeleteButton = checkedFiles > 0 ? false:true;
+    this.setState({checked,disableDeleteButton,disableRenameButton})
   }
 
   render() {
@@ -128,8 +135,8 @@ class App extends Component {
           folderForm = {this.state.createFolder}
           folderButton = {this.state.folderButtonActive}
           createFolder = {this.createFolder}
-          disableRename = {this.state.disableRename}
-          disableDelete = {this.state.disableDelete}
+          disableRename = {this.state.disableRenameButton}
+          disableDelete = {this.state.disableDeleteButton}
           activateRename = {this.activateRename}
           openModal = {this.toggleModal}
           />

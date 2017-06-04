@@ -4,13 +4,13 @@ export class File extends Component {
     super(props);
     this.state = {
       newName:this.props.file.name,
-      disabled:false
+      disableSaveButton:false
     }
   }
 
   handleChange = (e) => {
-    let disabled = e.target.value.length > 0 ? false:true;
-    this.setState({newName: e.target.value,disabled});
+    let disableSaveButton = e.target.value.length > 0 ? false:true;
+    this.setState({newName: e.target.value,disableSaveButton});
   }
 
   render() {
@@ -49,12 +49,17 @@ export class File extends Component {
               <input type="text" value={this.state.newName} onChange={this.handleChange} />
             </div>
             <div className="col-xs-4 app__files__file__form__button--save">
-              <button className = "button" onClick={()=>this.props.renameFile(this.state.newName,this.props.file.id)} disabled={this.state.disabled} >
+              <button
+                className = "button"
+                onClick={()=>this.props.renameFile(this.state.newName,this.props.file.id)}
+                disabled={this.state.disableSaveButton} >
                 Save
               </button>
             </div>
             <div className="col-xs-4 app__files__file__form__button--cancel">
-              <button className = "button" onClick={()=>this.props.abortRename(this.props.file.id)}>
+              <button
+                className = "button"
+                onClick={()=>this.props.abortRename(this.props.file.id)}>
                 Cancel
               </button>
             </div>

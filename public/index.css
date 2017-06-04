@@ -1,27 +1,22 @@
 .app {
   margin-top: 30px; }
-
-.app .button {
-  width: 120px;
-  height: 30px;
-  border: none;
-  font-weight: bold; }
-
-.app .button:hover {
-  border: 2px black solid; }
-
-.app .button:disabled {
-  background-color: #f3f3f3;
-  color: #636363; }
-
-.app .button:disabled:hover {
-  border: none; }
-
-.app .list-group-item {
-  border: 1px black solid;
-  border-radius: 0 !important;
-  padding: 0;
-  height: 50px; }
+  .app .button {
+    width: 120px;
+    height: 30px;
+    border: none;
+    font-weight: bold; }
+    .app .button:hover {
+      border: 2px black solid; }
+    .app .button:disabled {
+      background-color: #f3f3f3;
+      color: #636363; }
+      .app .button:disabled:hover {
+        border: none; }
+  .app .list-group-item {
+    border: 1px black solid;
+    border-radius: 0 !important;
+    padding: 0;
+    height: 50px; }
 
 .app__modal__div--front {
   position: absolute;
@@ -87,9 +82,8 @@
 .app__form__folder__button--cancel {
   height: 100%;
   padding: 9px; }
-
-.app__form__folder__button--cancel button {
-  margin-left: -20%; }
+  .app__form__folder__button--cancel button {
+    margin-left: -20%; }
 
 .app__folders__folder {
   padding: 13px !important; }
@@ -122,6 +116,5 @@
 .app__files__file__form__button--cancel {
   height: 100%;
   padding: 9px; }
-
-.app__files__file__form__button--cancel button {
-  margin-left: -20%; }
+  .app__files__file__form__button--cancel button {
+    margin-left: -20%; }
