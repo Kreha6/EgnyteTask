@@ -11,7 +11,8 @@
   border: 2px black solid; }
 
 .app .button:disabled {
-  background-color: #f3f3f3; }
+  background-color: #f3f3f3;
+  color: #636363; }
 
 .app .button:disabled:hover {
   border: none; }
