@@ -1,0 +1,38 @@
+.app__files__file{
+  .row{
+    height:100%;
+  }
+  &__input{
+    border-right: 1px solid black;
+    height:100%;
+    padding-left:40px!important;
+    padding-top:12px;
+  }
+  &__name{
+    padding-top:12px;
+  }
+  &__form{
+      &__checkbox{
+        border-right: 1px solid black;
+        height:100%;
+        padding-left:40px!important;
+        padding-top:12px;
+      }
+      &__input{
+        padding:11px;
+      }
+      &__button{
+        &--save{
+          height:100%;
+          padding:9px;
+        }
+        &--cancel{
+          height:100%;
+          padding:9px;
+          button{
+            margin-left:-20%;
+          }
+        }
+      }
+  }
+}

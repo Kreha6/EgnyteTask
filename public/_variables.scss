@@ -1,0 +1,5 @@
+@mixin smaller-button($width) {
+  @media screen and (max-width: 992px) {
+    width:$width !important;
+}
+}

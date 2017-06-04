@@ -1,0 +1,53 @@
+.app__form{
+  .row-main{
+    height:100%;
+  }
+  &__input{
+    border-right: 1px solid black;
+    height:100%;
+    padding-left:40px!important;
+    padding-top:12px;
+  }
+  &__button{
+    &--rename{
+      height:100%;
+      padding-top:9px;
+      padding-bottom:9px;
+      padding-left: 3%;
+    }
+    &--delete{
+      height:100%;
+      padding-top:9px;
+      padding-bottom:9px;
+      padding-left: 1%;
+    }
+    &--folder{
+      height:100%;
+      padding:9px;
+      padding-left: 35% !important;
+    }
+}
+&__folder{
+  .row{
+    height:100%;
+  }
+  &__input{
+    padding:11px;
+    padding-left:26px !important;
+  }
+  &__button{
+    &--create{
+      height:100%;
+      padding:9px;
+
+    }
+    &--cancel{
+      height:100%;
+      padding:9px;
+      button{
+        margin-left:-20%;
+      }
+    }
+  }
+}
+}

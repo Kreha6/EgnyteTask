@@ -6,7 +6,7 @@ export const FileList = (props) => {
     return <File key={file.id} file={file} handleToggle={props.handleToggle} abortRename = {props.abortRename} renameFile = {props.renameFile} />
   })
     return (
-      <div className="container-fluid">
+      <div className="app__files">
           {files}
       </div>
     )

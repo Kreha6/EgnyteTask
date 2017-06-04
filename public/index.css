@@ -1,10 +1,38 @@
+.app {
+  margin-top: 30px; }
+
+.app .button {
+  width: 120px;
+  height: 30px;
+  border: none;
+  font-weight: bold; }
+
+.app .button:hover {
+  border: 2px black solid; }
+
+.app .button:disabled {
+  background-color: #f3f3f3; }
+
+.app .button:disabled:hover {
+  border: none; }
+
+.app .list-group-item {
+  border: 1px black solid;
+  border-radius: 0 !important;
+  padding: 0;
+  height: 50px; }
+
 .app__modal__div--front {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9999;
-  background: #fff; }
+  background: #fff;
+  padding: 30px;
+  border: 3px solid black;
+  border-radius: 3px;
+  box-sizing: border-box; }
 
 .app__modal__div--back {
   position: absolute;
@@ -13,4 +41,86 @@
   top: 0px;
   left: 0px;
   z-index: 9998;
-  background: rgba(0, 0, 0, 0.3); }
+  background: rgba(0, 0, 0, 0.1); }
+
+.app__modal__div__buttons .button button {
+  margin: auto; }
+
+.app__form .row-main {
+  height: 100%; }
+
+.app__form__input {
+  border-right: 1px solid black;
+  height: 100%;
+  padding-left: 40px !important;
+  padding-top: 12px; }
+
+.app__form__button--rename {
+  height: 100%;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 3%; }
+
+.app__form__button--delete {
+  height: 100%;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 1%; }
+
+.app__form__button--folder {
+  height: 100%;
+  padding: 9px;
+  padding-left: 35% !important; }
+
+.app__form__folder .row {
+  height: 100%; }
+
+.app__form__folder__input {
+  padding: 11px;
+  padding-left: 26px !important; }
+
+.app__form__folder__button--create {
+  height: 100%;
+  padding: 9px; }
+
+.app__form__folder__button--cancel {
+  height: 100%;
+  padding: 9px; }
+
+.app__form__folder__button--cancel button {
+  margin-left: -20%; }
+
+.app__folders__folder {
+  padding: 13px !important; }
+
+.app__files__file .row {
+  height: 100%; }
+
+.app__files__file__input {
+  border-right: 1px solid black;
+  height: 100%;
+  padding-left: 40px !important;
+  padding-top: 12px; }
+
+.app__files__file__name {
+  padding-top: 12px; }
+
+.app__files__file__form__checkbox {
+  border-right: 1px solid black;
+  height: 100%;
+  padding-left: 40px !important;
+  padding-top: 12px; }
+
+.app__files__file__form__input {
+  padding: 11px; }
+
+.app__files__file__form__button--save {
+  height: 100%;
+  padding: 9px; }
+
+.app__files__file__form__button--cancel {
+  height: 100%;
+  padding: 9px; }
+
+.app__files__file__form__button--cancel button {
+  margin-left: -20%; }

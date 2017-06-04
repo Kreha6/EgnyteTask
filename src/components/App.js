@@ -65,14 +65,7 @@ class App extends Component {
     let folders = this.state.folders;
     let id = folders.length;
     let newFolder = {id:id, name:name}
-    this.setState({folders:[newFolder,...folders],createFolder:false})
-  }
-
-  handleDelete = (id) =>{
-    let files = this.state.files;
-    let index = files.map((file) => file.id).indexOf(id);
-    let updatedFiles = [...files.slice(0,index),...files.slice(index+1)]
-    this.setState({files:updatedFiles})
+    this.setState({folders:[newFolder,...folders],createFolder:false,folderButtonActive:true})
   }
   deleteFiles = () =>{
     let files = this.state.files;
@@ -83,10 +76,13 @@ class App extends Component {
         files = [...files.slice(0,index),...files.slice(index+1)]
       }
     })
-    this.setState({files,openModal: !this.state.openModal})
+    this.setState({files,openModal: !this.state.openModal,disableDelete:true,disableRename:true})
+    if(files.length == 0){
+      this.setState({checked:false})
+    }
   }
 
-  handleToggle=(id)=>{
+  handleToggleFile=(id)=>{
     let file = findById(id,this.state.files)
     let toggled = toggleFile(file)
     let updatedFiles = updateFile(this.state.files, toggled)
@@ -112,14 +108,14 @@ class App extends Component {
       <div className="container app">
         <Modal isOpen={this.state.openModal} openModal = {this.toggleModal} >
             <h1>Are you sure you want to delete selected files?</h1>
-            <div className = "row">
-              <div className="col-xs-6">
-                <button onClick={() => this.deleteFiles()}>
+            <div className = "row app__modal__buttons">
+              <div className="col-xs-6 app__modal__buttons--yes text-center">
+                <button className = "button" onClick={() => this.deleteFiles()}>
                   Yes
                 </button>
               </div>
-              <div className="col-xs-6">
-                <button onClick={() => this.toggleModal()} >
+              <div className="col-xs-6 app__modal__buttons--no text-center">
+                <button className = "button" onClick={() => this.toggleModal()} >
                   No
                 </button>
               </div>
@@ -128,7 +124,6 @@ class App extends Component {
         <Form
           checked = {this.state.checked}
           check = {this.handleCheck}
-          delete = {this.handleDelete}
           toggleFolderForm = {this.toggleFolderForm}
           folderForm = {this.state.createFolder}
           folderButton = {this.state.folderButtonActive}
@@ -139,7 +134,7 @@ class App extends Component {
           openModal = {this.toggleModal}
           />
         <FolderList folders={this.state.folders} />
-        <FileList files={this.state.files} handleToggle ={this.handleToggle} abortRename={this.abortRename} renameFile = {this.renameFile} />
+        <FileList files={this.state.files} handleToggle ={this.handleToggleFile} abortRename={this.abortRename} renameFile = {this.renameFile} />
       </div>
     );
   }

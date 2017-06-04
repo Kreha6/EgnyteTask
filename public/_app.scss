@@ -1,0 +1,24 @@
+.app{
+  margin-top: 30px;
+  .button{
+    width:120px;
+    height:30px;
+    border:none;
+    font-weight: bold;
+    &:hover{
+      border:2px black solid;
+    }
+    &:disabled{
+    background-color: #f3f3f3;
+      &:hover{
+        border:none;
+      }
+    }
+  }
+  .list-group-item{
+    border:1px black solid;
+    border-radius: 0 !important;
+    padding:0;
+    height:50px;
+  }
+}

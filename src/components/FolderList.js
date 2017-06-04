@@ -5,7 +5,7 @@ export const FolderList = (props) => {
   return <Folder key={folder.id} folder={folder}/>
   })
     return (
-      <div className="">
+      <div className="app__folders">
         {folders}
       </div>
     )
